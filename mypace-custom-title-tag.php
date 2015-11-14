@@ -2,13 +2,17 @@
 /*
 Plugin Name: mypace Custom Title Tag
 Plugin URI: https://github.com/mypacecreator/mypace-custom-title-tag
-Description: This plugin allows you to edit title tag at every singular post(posts, pages, custom post types). This is a very sinple plugin.
+Description: This plugin allows you to edit title tag at every singular post(posts, pages, custom post types). This is a very simple plugin.
 Version: 1.0
 Author: Kei Nomura (mypacecreator)
 Author URI: http://mypacecreator.net/
 Text Domain: mypace-custom-title-tag
-Domain Path: /language
+Domain Path: /languages
 */
+
+function MCTT_plugins_loaded() {
+	load_plugin_textdomain( 'mypace-custom-title-tag', false, basename( dirname( __FILE__ ) ) . '/languages' );
+}
 
 if ( !function_exists( 'mypace_add_meta_box' ) ){
 	//make a meta box
@@ -21,7 +25,7 @@ if ( !function_exists( 'mypace_add_meta_box' ) ){
 		foreach ( $post_types as $post_type ){
 			add_meta_box(
 				'mypace_sectionid',
-				__( 'Title Tag', 'mypace-custom-title-tag' ),
+				esc_html__( 'Title Tag', 'mypace-custom-title-tag' ),
 				'mypace_title_meta_box',
 				$post_type,
 				'advanced'
@@ -40,7 +44,7 @@ if ( !function_exists( 'mypace_title_meta_box' ) ){
 		printf(
 			'<label for="%s">%s</label><br />',
 			esc_attr($field_name),
-			__( "Enter title-tag text.", 'mypace-custom-title-tag' )
+			esc_html__( "Enter title-tag text.", 'mypace-custom-title-tag' )
 		);
 		printf(
 			'<input type="text" name="%s" value="%s" size="40" />',
@@ -102,6 +106,7 @@ if ( !function_exists( 'mypace_custom_title' ) ){
 	}
 }
 
-add_action( 'admin_menu', 'mypace_add_meta_box' );
-add_action( 'save_post',  'mypace_save_titledata' );
-add_filter( 'wp_title',   'mypace_custom_title' );
+add_action( 'plugins_loaded', 'MCTT_plugins_loaded' );
+add_action( 'admin_menu',     'mypace_add_meta_box' );
+add_action( 'save_post',      'mypace_save_titledata' );
+add_filter( 'wp_title',       'mypace_custom_title' );

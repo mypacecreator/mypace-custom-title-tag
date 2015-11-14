@@ -12,7 +12,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 == Description ==
 
 This plugin allows you to edit title tag at every singular post(posts, pages, custom post types).
-This is a very sinple plugin.
+This is a very simple plugin.
 
 = Contributors =
 
@@ -20,7 +20,7 @@ This is a very sinple plugin.
 
 == Installation ==
 
-1. Upload `mypace Remove Comments Feed Link` to the `/wp-content/plugins/` directory
+1. Upload `mypace Custom Title Tag` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
