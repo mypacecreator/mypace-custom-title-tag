@@ -3,7 +3,7 @@
 Plugin Name: mypace Custom Title Tag
 Plugin URI: https://github.com/mypacecreator/mypace-custom-title-tag
 Description: This plugin allows you to edit title tag at every singular post(posts, pages, custom post types). This is a very simple plugin.
-Version: 1.0
+Version: 1.1
 Author: Kei Nomura (mypacecreator)
 Author URI: http://mypacecreator.net/
 Text Domain: mypace-custom-title-tag
@@ -16,9 +16,11 @@ if ( !class_exists( 'Mypace_Custom_Title_Tag' ) ){
 
 		public function __construct() {
 			//Actions and Filters	
-			add_action( 'admin_menu', array( $this, 'add_meta_box' ) );
-			add_action( 'save_post',  array( $this, 'save_titledata' ) );
-			add_filter( 'wp_title',   array( $this, 'custom_title' ) );
+			add_action( 'admin_menu',                      array( $this, 'add_meta_box' ) );
+			add_action( 'save_post',                       array( $this, 'save_titledata' ) );
+			add_filter( 'wp_title',                        array( $this, 'custom_title' ) );
+			add_action( 'admin_print_styles-post.php',     array( $this, 'title_meta_box_styles' ) );
+			add_action( 'admin_print_styles-post-new.php', array( $this, 'title_meta_box_styles' ) );
 			load_plugin_textdomain( 'mypace-custom-title-tag', false, basename( dirname( __FILE__ ) ) . '/languages' );
 		}
 
@@ -52,11 +54,22 @@ if ( !class_exists( 'Mypace_Custom_Title_Tag' ) ){
 				esc_html__( "Enter title-tag text.", 'mypace-custom-title-tag' )
 			);
 			printf(
-				'<input type="text" name="%s" value="%s" size="40" />',
+				'<input type="text" name="%s" value="%s" size="60" id="%s" />',
 				esc_attr($field_name),
-				esc_attr($field_value)
+				esc_attr($field_value),
+				esc_attr($field_name)
 			);
 	}
+
+		public function title_meta_box_styles() {
+		?>
+		<style type="text/css" charset="utf-8">
+			#mypace_title_tag {
+				width: 98%;
+			}
+		</style>
+		<?php
+		}
 
 		public function save_titledata($post_id){
 

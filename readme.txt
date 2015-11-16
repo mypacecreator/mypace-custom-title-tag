@@ -4,7 +4,7 @@ Donate link: http://www.amazon.co.jp/registry/wishlist/33HK9YOKDESUO
 Tags: SEO, title
 Requires at least: 4.1
 Tested up to: 4.3.1
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,9 @@ No need to add anything to your theme’s header.php file, just remove the legac
 2. Edited title tag.
 
 == Changelog ==
+
+= 1.1 =
+* Changed width of the input field.
 
 = 1.0 =
 * Initial release.
