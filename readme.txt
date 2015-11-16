@@ -46,9 +46,6 @@ No need to add anything to your theme’s header.php file, just remove the legac
 
 == Changelog ==
 
-= 1.1 =
-* Change functions' name, define a class.
-
 = 1.0 =
 * Initial release.
 
