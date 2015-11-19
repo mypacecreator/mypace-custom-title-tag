@@ -3,7 +3,7 @@ Contributors: mypacecreator
 Donate link: http://www.amazon.co.jp/registry/wishlist/33HK9YOKDESUO
 Tags: SEO, title
 Requires at least: 4.1
-Tested up to: 4.3.1
+Tested up to: 4.4
 Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -21,7 +21,7 @@ This is a very simple plugin.
 
 = Notice =
 
-Your theme must use`add_theme_support( 'title-tag' );` in the functions.php file in order to support title tag.
+Your theme must use `add_theme_support( 'title-tag' );` in the functions.php file in order to support title tag.
 No need to add anything to your theme’s header.php file, just remove the legacy wp_title() call or all hard-coded title tags.
 
 * [Related: Title Tag « WordPress Codex](https://codex.wordpress.org/Title_Tag/) 
@@ -31,7 +31,7 @@ No need to add anything to your theme’s header.php file, just remove the legac
 
 = This plugin output nothing. =
 
-Your theme must use`add_theme_support( 'title-tag' );` in the functions.php file in order to support title tag.
+Your theme must use `add_theme_support( 'title-tag' );` in the functions.php file in order to support title tag.
 
 = Title tags duplicated. =
 
