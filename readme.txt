@@ -13,6 +13,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 This plugin allows you to edit title tag at every singular post(posts, pages, custom post types).
 This is a very simple plugin.
 
+= For Japanese User =
+このプラグインを有効化すると、個別記事ページ（投稿、固定ページ、カスタム投稿タイプの記事）のタイトルタグを任意の文字列に書き換えることができます。
+高機能なSEOプラグインは必要ないという方向けのシンプルなプラグインです。
+
 
 == Installation ==
 
@@ -25,6 +29,10 @@ Your theme must use `add_theme_support( 'title-tag' );` in the functions.php fil
 No need to add anything to your theme’s header.php file, just remove the legacy wp_title() call or all hard-coded title tags.
 
 * [Related: Title Tag « WordPress Codex](https://codex.wordpress.org/Title_Tag/) 
+
+= For Japanese User =
+このプラグインを使うには、お使いのテーマのfunctions.phpで `add_theme_support( 'title-tag' );` が定義されている必要があります。
+タイトルタグの記述をheader.phpに書くことは現在推奨されていません。head内のwp_title()関数や、ハードコーディングされたタイトルタグは削除してください。
 
 
 == Frequently Asked Questions ==
