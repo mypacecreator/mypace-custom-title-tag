@@ -3,7 +3,7 @@
 Plugin Name: mypace Custom Title Tag
 Plugin URI: https://github.com/mypacecreator/mypace-custom-title-tag
 Description: This plugin allows you to edit title tag at every singular post(posts, pages, custom post types). This is a very simple plugin.
-Version: 1.1
+Version: 1.2
 Author: Kei Nomura (mypacecreator)
 Author URI: http://mypacecreator.net/
 Text Domain: mypace-custom-title-tag
@@ -15,10 +15,15 @@ if ( !class_exists( 'Mypace_Custom_Title_Tag' ) ){
 	class Mypace_Custom_Title_Tag{
 
 		public function __construct() {
-			//Actions and Filters	
+			//Actions and Filters
+			$wp_version = get_bloginfo( 'version' );
+			if ( $wp_version >= '4.4' ) {
+				add_filter( 'pre_get_document_title',        array( $this, 'custom_title' ) );
+			} else { // if ( $wp_version < '4.3.x' )
+				add_filter( 'wp_title',                      array( $this, 'custom_title' ) );
+			}
 			add_action( 'admin_menu',                      array( $this, 'add_meta_box' ) );
 			add_action( 'save_post',                       array( $this, 'save_titledata' ) );
-			add_filter( 'wp_title',                        array( $this, 'custom_title' ) );
 			add_action( 'admin_print_styles-post.php',     array( $this, 'title_meta_box_styles' ) );
 			add_action( 'admin_print_styles-post-new.php', array( $this, 'title_meta_box_styles' ) );
 			load_plugin_textdomain( 'mypace-custom-title-tag', false, basename( dirname( __FILE__ ) ) . '/languages' );
