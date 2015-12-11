@@ -16,8 +16,8 @@ if ( !class_exists( 'Mypace_Custom_Title_Tag' ) ){
 
 		public function __construct() {
 			//Actions and Filters
-			$wp_version = get_bloginfo( 'version' );
-			if ( $wp_version >= '4.4' ) {
+			global $wp_version;
+			if ( version_compare( $wp_version, '4.4', '>=' ) ) {
 				add_filter( 'pre_get_document_title',        array( $this, 'custom_title' ) );
 			} else { // if ( $wp_version < '4.3.x' )
 				add_filter( 'wp_title',                      array( $this, 'custom_title' ) );
