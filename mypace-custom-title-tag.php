@@ -3,7 +3,7 @@
 Plugin Name: mypace Custom Title Tag
 Plugin URI: https://github.com/mypacecreator/mypace-custom-title-tag
 Description: This plugin allows you to edit title tag at every singular post(posts, pages, custom post types). This is a very simple plugin.
-Version: 1.2
+Version: 1.2.1
 Author: Kei Nomura (mypacecreator)
 Author URI: http://mypacecreator.net/
 Text Domain: mypace-custom-title-tag
@@ -79,28 +79,27 @@ if ( !class_exists( 'Mypace_Custom_Title_Tag' ) ){
 		public function save_titledata($post_id){
 
 			//permission check and save data
+			// Check if our nonce is set.
 			if ( !isset($_POST['mypace_noncename']) ){
-				return $post_id;
+				return;
 			}
+			// Verify that the nonce is valid.
 			if ( !wp_verify_nonce( $_POST['mypace_noncename'], plugin_basename(__FILE__) ) ){
-				return $post_id;
+				return;
 			}
+			// If this is an autosave, our form has not been submitted, so we don't want to do anything.
 			if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ){
-				return $post_id;
+				return;
 			}
-
-			$post_type = isset( $_POST['post_type'] ) ? $_POST['post_type'] : '';
-			$post_types = wp_list_filter(
-					get_post_types(array('public' => true)),
-					array('attachment'),
-					'NOT'
-			);
-			if ( in_array($post_type, $post_types) ){
-				if ( !current_user_can( 'edit_' . $post_type, $post_id ) ){
-					return $post_id;
+			// Check the user's permissions.
+			if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+				if ( !current_user_can( 'edit_page', $post_id ) ) {
+					return;
 				}
 			} else {
-				return $post_id;
+				if ( !current_user_can( 'edit_post', $post_id ) ) {
+					return;
+				}
 			}
 
 			$mydata = isset($_POST['mypace_title_tag']) ? $_POST['mypace_title_tag'] : '';

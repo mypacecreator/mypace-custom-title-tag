@@ -54,6 +54,9 @@ No need to add anything to your theme’s header.php file, just remove the legac
 
 == Changelog ==
 
+= 1.2.1 =
+* Fixed a problem with saving data on custom post types.
+
 = 1.2 =
 * WordPress 4.4 Compatibility.
 
