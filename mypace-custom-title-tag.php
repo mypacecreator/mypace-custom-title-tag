@@ -1,25 +1,33 @@
 <?php
-/*
-Plugin Name: mypace Custom Title Tag
-Plugin URI: https://github.com/mypacecreator/mypace-custom-title-tag
-Description: This plugin allows you to edit title tag at every singular post(posts, pages, custom post types). This is a very simple plugin.
-Version: 1.2.2
-Author: Kei Nomura (mypacecreator)
-Author URI: http://mypacecreator.net/
-Text Domain: mypace-custom-title-tag
-Domain Path: /languages
-*/
+/**
+ * Plugin Name: mypace Custom Title Tag
+ * Plugin URI: https://github.com/mypacecreator/mypace-custom-title-tag
+ * Description: This plugin allows you to edit title tag at every singular post(posts, pages, custom post types). This is a very simple plugin.
+ * Version: 1.2.2
+ * Author: Kei Nomura (mypacecreator)
+ * Author URI: http://mypacecreator.net/
+ * Text Domain: mypace-custom-title-tag
+ * Domain Path: /languages
+ *
+ * @package Mypace_Custom_Title_Tag
+ */
 
 if ( ! class_exists( 'Mypace_Custom_Title_Tag' ) ) {
-
+	/**
+	 * Class Mypace_Custom_Title_Tag
+	 */
 	class Mypace_Custom_Title_Tag {
 
+		/**
+		 * Mypace_Custom_Title_Tag constructor.
+		 *
+		 * Register actions and filters.
+		 */
 		public function __construct() {
-			// Actions and Filters
 			global $wp_version;
 			if ( version_compare( $wp_version, '4.4', '>=' ) ) {
 				add_filter( 'pre_get_document_title',        array( $this, 'custom_title' ) );
-			} else { // if ( $wp_version < '4.3.x' )
+			} else { // if ( $wp_version < '4.3.x' ).
 				add_filter( 'wp_title',                      array( $this, 'custom_title' ) );
 			}
 			add_action( 'admin_menu',                      array( $this, 'add_meta_box' ) );
@@ -29,7 +37,9 @@ if ( ! class_exists( 'Mypace_Custom_Title_Tag' ) ) {
 			load_plugin_textdomain( 'mypace-custom-title-tag' );
 		}
 
-		// make a meta box
+		/**
+		 * Make a meta box
+		 */
 		public function add_meta_box() {
 			$post_types = wp_list_filter(
 				get_post_types( array( 'public' => true ) ),
@@ -47,8 +57,10 @@ if ( ! class_exists( 'Mypace_Custom_Title_Tag' ) ) {
 			}
 		}
 
+		/**
+		 * Custom title metabox for input form
+		 */
 		public function title_meta_box() {
-			// input form
 			wp_nonce_field( plugin_basename( __FILE__ ), 'mypace_noncename' );
 			$field_name = 'mypace_title_tag';
 			$field_value = get_post_meta( get_the_ID(), $field_name, true );
@@ -66,6 +78,9 @@ if ( ! class_exists( 'Mypace_Custom_Title_Tag' ) ) {
 			);
 		}
 
+		/**
+		 * Custom title metabox style.
+		 */
 		public function title_meta_box_styles() {
 		?>
 		<style type="text/css" charset="utf-8">
@@ -76,6 +91,13 @@ if ( ! class_exists( 'Mypace_Custom_Title_Tag' ) ) {
 		<?php
 		}
 
+		/**
+		 * Save Setting.
+		 *
+		 * @param int $post_id postID on save.
+		 *
+		 * @return string|void
+		 */
 		public function save_titledata( $post_id ) {
 
 			// permission check and save data
@@ -111,7 +133,13 @@ if ( ! class_exists( 'Mypace_Custom_Title_Tag' ) ) {
 			return $mydata;
 		}
 
-		// output title tag
+		/**
+		 * Title filter.
+		 *
+		 * @param string $title title for title tag.
+		 *
+		 * @return string
+		 */
 		public function custom_title( $title ) {
 			if ( is_singular() ) {
 				$post_id = get_the_ID();
