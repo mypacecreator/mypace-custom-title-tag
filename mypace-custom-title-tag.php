@@ -2,8 +2,8 @@
 /**
  * Plugin Name: mypace Custom Title Tag
  * Plugin URI: https://github.com/mypacecreator/mypace-custom-title-tag
- * Description: This plugin allows you to edit title tag at every singular post(posts, pages, custom post types). This is a very simple plugin.
- * Version: 1.2.2
+ * Description: Using this plugin you can edit title tags in all single posts(pages and custom post types).
+ * Version: 1.2.3
  * Author: Kei Nomura (mypacecreator)
  * Author URI: http://mypacecreator.net/
  * Text Domain: mypace-custom-title-tag
