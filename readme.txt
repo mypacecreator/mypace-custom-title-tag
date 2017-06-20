@@ -46,7 +46,7 @@ You don’t need to add anything to the theme's header.php file. Delete the lega
 == Changelog ==
 
 = 1.2.3 =
-* WordPress 4.7.1 Compatibility.
+* WordPress 4.8 Compatibility.
 * WordPress Coding Standard Fix.
 
 = 1.2.2 =
