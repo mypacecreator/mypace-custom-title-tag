@@ -3,15 +3,14 @@ Contributors: mypacecreator, Toro_Unit
 Donate link: http://www.amazon.co.jp/registry/wishlist/33HK9YOKDESUO
 Tags: SEO, title
 Requires at least: 4.1
-Tested up to: 4.8
+Tested up to: 5.0
 Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Using this plugin you can edit title tags in all single posts(pages and custom post types).
-This is a very simple plugin.
+This plugin allows you to edit title tag at every singular post(posts, pages, custom post types). This is a very simple plugin.
 
 
 == Installation ==
